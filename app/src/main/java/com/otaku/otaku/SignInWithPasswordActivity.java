@@ -73,10 +73,14 @@ public class SignInWithPasswordActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user){
         if (user != null){
-            Toast.makeText(SignInWithPasswordActivity.this,"Please verify your email address",Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(SignInWithPasswordActivity.this,MainActivity.class);
-            startActivity(intent);
-            finish();
+
+            if (!user.isEmailVerified()){
+                Toast.makeText(SignInWithPasswordActivity.this,"Please verify your email address",Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
+        Intent intent = new Intent(SignInWithPasswordActivity.this,MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

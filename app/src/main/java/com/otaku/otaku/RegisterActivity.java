@@ -49,7 +49,12 @@ public class RegisterActivity extends AppCompatActivity {
                                 if(task.isSuccessful()){
                                     Log.d(TAG,"createUserWithEmail:success");
                                     FirebaseUser user = firebaseAuth.getCurrentUser();
+                                    user.sendEmailVerification();
                                     updateUI(user);
+                                    finish();
+                                }else{
+                                    Log.e(TAG, "createUserWithEmailAndPassword:failed");
+                                    Toast.makeText(RegisterActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -83,8 +88,13 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user){
         if (user != null){
-            Toast.makeText(RegisterActivity.this,"Please verify your email address",Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
+
+            if (!user.isEmailVerified()){
+                Toast.makeText(RegisterActivity.this,"Please verify your email address",Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Intent intent = new Intent(RegisterActivity.this, SignInWithPasswordActivity.class);
             startActivity(intent);
             finish();
         }
