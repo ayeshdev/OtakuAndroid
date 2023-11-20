@@ -6,37 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="0dp"
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:orientation="horizontal"
+        android:text="Log out"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <View
-            android:id="@+id/divider2"
-            android:layout_width="10dp"
-            android:layout_height="1dp"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="?android:attr/listDivider" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="or continue with"
-            android:textAlignment="center" />
-
-        <View
-            android:id="@+id/divider4"
-            android:layout_width="10dp"
-            android:layout_height="1dp"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="?android:attr/listDivider" />
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
