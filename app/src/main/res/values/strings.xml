@@ -1,4 +1,30 @@
 <resources>
     <string name="app_name">Otaku</string>
     <string name="web_client_id">277669220693-nm3qjlgb22k2a9a68n81vkqddf3psa97.apps.googleusercontent.com</string>
+
+    <string name="facebook_app_id">1187070729363992</string>
+    <string name="fb_login_protocol_scheme">fb1187070729363992</string>
+    <string name="facebook_client_token">f5f1bfc4c9c04fe042c81ffbd10d2d99</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Search</string>
+    <string name="nav_home_title">Home</string>
+    <string name="nav_catalog_title">Catalog</string>
+    <string name="nav_cart_title">Cart</string>
+    <string name="nav_favorite_title">Favorites</string>
+    <string name="nav_account_title">Account</string>
+    <string name="side_navbar_home_title">Home</string>
+    <string name="side_navbar_catalog_title">Catalog</string>
+    <string name="side_navbar_cart_title">Cart</string>
+    <string name="side_navbar_favorites_title">Favorites</string>
+    <string name="side_navbar_account_title">Account</string>
+    <string name="side_navbar_login_title">Login</string>
+    <string name="side_navbar_logout_title">Logout</string>
+
+    <string name="side_navbar_open">Open Side Navbar</string>
+    <string name="side_navbar_close">Close Side Navbar</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Home Fragment</string>
+    <string name="catalog_fragment_title">Catalog</string>
 </resources>
