@@ -24,6 +24,8 @@ import com.otaku.otaku.Fragments.AccountFragment;
 import com.otaku.otaku.Fragments.CatalogFragment;
 import com.otaku.otaku.Fragments.HomeFragment;
 
+import com.denzcoskun.imageslider.ImageSlider;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, NavigationBarView.OnItemSelectedListener {
 
 
