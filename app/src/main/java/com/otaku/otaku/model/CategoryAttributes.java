@@ -2,10 +2,7 @@ package com.otaku.otaku.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.time.OffsetDateTime;
-
 public class CategoryAttributes {
-
     @SerializedName("name")
     private String name;
 

@@ -1,18 +1,10 @@
-// Category.java
-
-// YApi QuickType插件生成，具体参考文档:https://plugins.jetbrains.com/plugin/18847-yapi-quicktype/documentation
-
 package com.otaku.otaku.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.time.OffsetDateTime;
-import java.util.List;
-
 public class Category {
-
     @SerializedName("id")
-        private int id;
+    private int id;
 
     @SerializedName("attributes")
     private CategoryAttributes categoryAttributes;
