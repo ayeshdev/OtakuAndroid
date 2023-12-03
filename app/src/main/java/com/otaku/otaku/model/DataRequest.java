@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 public class DataRequest {
     @SerializedName("data")
     Attributes attributes;
-    public DataRequest(String title, String description, ImageResponse image, CategoryData category) {
+    public DataRequest(String title, String description, ImageResponse image, CategoryResponse category) {
         this.attributes = new Attributes(title,description,image,category);
     }
 }

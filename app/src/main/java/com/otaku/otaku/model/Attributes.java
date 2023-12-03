@@ -18,7 +18,7 @@ public class Attributes {
 
     @SerializedName("category")
     @Expose
-    private CategoryData categoryData;
+    private CategoryResponse categoryResponse;
 
     public Attributes() {
     }
@@ -28,11 +28,11 @@ public class Attributes {
         this.description = description;
     }
 
-    public Attributes(String title, String description, ImageResponse imageResponse, CategoryData categoryData) {
+    public Attributes(String title, String description, ImageResponse imageResponse, CategoryResponse categoryResponse) {
         this.title = title;
         this.description = description;
         this.imageResponse = imageResponse;
-        this.categoryData = categoryData;
+        this.categoryResponse = categoryResponse;
     }
 
     public String getTitle() {
@@ -59,11 +59,11 @@ public class Attributes {
         this.imageResponse = imageResponse;
     }
 
-    public CategoryData getCategoryData() {
-        return categoryData;
+    public CategoryResponse getCategoryResponse() {
+        return categoryResponse;
     }
 
-    public void setCategoryData(CategoryData categoryData) {
-        this.categoryData = categoryData;
+    public void setCategoryAttributes(CategoryAttributes categoryAttributes) {
+        this.categoryResponse = categoryResponse;
     }
 }

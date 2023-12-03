@@ -4,16 +4,15 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ProductResponse {
+public class CategoryResponse {
     @SerializedName("data")
-    private List<Products> data;
+    private Category data;
 
-    public List<Products> getData() {
+    public Category getData() {
         return data;
     }
 
-    public void setData(List<Products> data) {
+    public void setData(Category data) {
         this.data = data;
     }
 }
-

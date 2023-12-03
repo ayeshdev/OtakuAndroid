@@ -64,19 +64,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         stringTitle = product.getAttribute().getTitle();
         stringDes = product.getAttribute().getDescription();
         String imgUrl = product.getAttribute().getImageResponse().getData().get(0).getImageAttributes().getUrl();
-//        String category = product.getAttribute().getCategoryData().getAttributes().getName();
+        String category = product.getAttribute().getCategoryResponse().getData().getCategoryAttributes().getName();
 
-        String category = "Category Not Available"; // Default value or message for null category
-
-        // Check if category data is available
-        if (product.getAttribute().getCategoryData() != null
-                && product.getAttribute().getCategoryData().getAttributes() != null
-                && product.getAttribute().getCategoryData().getAttributes().getName() != null) {
-            category = product.getAttribute().getCategoryData().getAttributes().getName();
-        }
 
         Log.i("Category", category);
-
         Log.i("Product Title", stringTitle);
         Log.i("Product Description", stringDes);
         Log.i("Image URL",imgUrl);
