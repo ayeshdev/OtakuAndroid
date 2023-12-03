@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -86,6 +87,9 @@ public class HomeFragment extends Fragment {
 //        viewPager2 = view.findViewById(R.id.viewPager);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+
+            FragmentManager fragmentManager = getChildFragmentManager();
+
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 //                viewPager2.setCurrentItem(tab.getPosition());
@@ -99,7 +103,12 @@ public class HomeFragment extends Fragment {
                     System.out.println(product.getTitle());
 
                 }else if(tab.getPosition() == 1){
-
+                    TShirtFragment tShirtFragment = new TShirtFragment();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.category_fragment_container, tShirtFragment)
+                            .addToBackStack(null)
+                            .commit();
+                    fragmentManager.popBackStack();
                 }
             }
 
@@ -135,7 +144,7 @@ public class HomeFragment extends Fragment {
                 DataResponse dataResponse = response.body();
                 assert dataResponse != null;
                 productsList = new ArrayList<>(dataResponse.getData());
-                dataView(productsList);
+//                dataView(productsList);
             }
 
             @Override
