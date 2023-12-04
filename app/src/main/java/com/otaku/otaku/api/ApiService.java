@@ -12,7 +12,7 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ApiService {
-    @GET("api/products?fields[0]=id&fields[2]=title&fields[3]=description&populate=image&populate=category")
+    @GET("api/products?populate=*")
     Call<DataResponse> getProducts();
 
     @POST("api/products")

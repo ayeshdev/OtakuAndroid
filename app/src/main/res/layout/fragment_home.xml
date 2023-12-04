@@ -286,16 +286,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!--        <androidx.viewpager2.widget.ViewPager2-->
-            <!--            android:id="@+id/viewPager"-->
-            <!--            android:layout_width="0dp"-->
-            <!--            android:layout_height="500dp"-->
-            <!--            android:layout_marginTop="160dp"-->
-            <!--            app:layout_constraintEnd_toEndOf="parent"-->
-            <!--            app:layout_constraintStart_toStartOf="parent"-->
-            <!--            app:layout_constraintTop_toTopOf="parent" >-->
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/viewPager"
+                        android:layout_width="0dp"
+                        android:layout_height="500dp"
+                        android:layout_marginTop="160dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" >
 
-            <!--        </androidx.viewpager2.widget.ViewPager2>-->
+                    </androidx.viewpager2.widget.ViewPager2>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

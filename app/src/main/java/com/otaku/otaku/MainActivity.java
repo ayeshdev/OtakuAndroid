@@ -21,10 +21,13 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.otaku.otaku.Fragments.AccountFragment;
+import com.otaku.otaku.Fragments.CartFragment;
 import com.otaku.otaku.Fragments.CatalogFragment;
+import com.otaku.otaku.Fragments.FavoriteFragment;
 import com.otaku.otaku.Fragments.HomeFragment;
 
 import com.denzcoskun.imageslider.ImageSlider;
+import com.otaku.otaku.Fragments.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, NavigationBarView.OnItemSelectedListener {
 
@@ -86,11 +89,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             loadFragmentView(new CatalogFragment());
             return true;
         }else if (item.getItemId() == R.id.navCart){
+            loadFragmentView(new CartFragment());
             return true;
         }else if (item.getItemId() == R.id.navFavorite){
+            loadFragmentView(new FavoriteFragment());
             return true;
         }else if (item.getItemId() == R.id.navAccount){
-            loadFragmentView(new AccountFragment());
+            loadFragmentView(new ProfileFragment());
             return true;
         }else;
         return false;

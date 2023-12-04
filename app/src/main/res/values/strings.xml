@@ -28,4 +28,9 @@
     <string name="hello_blank_fragment">Home Fragment</string>
     <string name="catalog_fragment_title">Catalog</string>
     <string name="cart_title">AOT</string>
+    <string name="product_name">Product Name</string>
+    <string name="product_price">Product Price</string>
+    <string name="rs">"Rs "</string>
+    <string name="favorites_icon">Favorites Icon</string>
+    <string name="cart">Cart</string>
 </resources>

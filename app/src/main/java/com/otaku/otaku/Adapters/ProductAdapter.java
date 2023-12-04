@@ -32,16 +32,19 @@ import retrofit2.Response;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
 
-    private static final String base_url = "http://192.168.1.101:1337";
+    private static final String base_url = "http://192.168.1.100:1337";
     Context context;
     ApiService apiService;
     List<Products> productsList;
     String stringTitle;
     String stringDes;
-    Double doublePrice;
+    String doublePrice;
 
     ImageResponse image;
 
+
+    public ProductAdapter() {
+    }
 
     public ProductAdapter(Context context, List<Products> productsList) {
         this.productsList = productsList;
@@ -63,6 +66,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         Products product = productsList.get(position);
         stringTitle = product.getAttribute().getTitle();
         stringDes = product.getAttribute().getDescription();
+        doublePrice = context.getString(R.string.rs) + String.valueOf(product.getAttribute().getPrice());
         String imgUrl = product.getAttribute().getImageResponse().getData().get(0).getImageAttributes().getUrl();
         String category = product.getAttribute().getCategoryResponse().getData().getCategoryAttributes().getName();
 
@@ -71,13 +75,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         Log.i("Product Title", stringTitle);
         Log.i("Product Description", stringDes);
         Log.i("Image URL",imgUrl);
-//        Log.i("Category", category);
+        Log.i("Price", String.valueOf(doublePrice));
 
-        holder.title.setText(product.getAttribute().getTitle());
+
+        holder.title.setText(stringTitle);
+        holder.price.setText(doublePrice);
 //        holder.description.setText(product.getAttribute().getDescription());
         Picasso.get()
                 .load(base_url+imgUrl)
-                .resize(400, 400)
+                .resize(700, 700)
                 .into(holder.imageView);
     }
 
@@ -99,7 +105,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             super(itemView);
             title = itemView.findViewById(R.id.textViewProductName);
 //            description = itemView.findViewById(R.id.description);
-//            price = itemView.findViewById(R.id.price);
+            price = itemView.findViewById(R.id.textViewProductPrice);
             imageView = itemView.findViewById(R.id.productView); // Initialize the ImageView
 //            card = itemView.findViewById(R.id.card);
         }

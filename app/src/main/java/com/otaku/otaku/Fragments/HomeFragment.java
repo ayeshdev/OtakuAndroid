@@ -32,6 +32,7 @@ import com.otaku.otaku.model.Products;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,6 +41,7 @@ import retrofit2.Response;
 public class HomeFragment extends Fragment {
 
     Context context;
+
     ImageSlider imageSlider;
 
     ApiService apiService;
@@ -71,6 +73,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getAll();
 
         imageSlider = view.findViewById(R.id.imageSlider);
         ArrayList<SlideModel> slideModels = new ArrayList<>();
@@ -86,42 +89,77 @@ public class HomeFragment extends Fragment {
         tabLayout = view.findViewById(R.id.category_tabs);
 //        viewPager2 = view.findViewById(R.id.viewPager);
 
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 
-            FragmentManager fragmentManager = getChildFragmentManager();
+        // Find the RecyclerView from the inflated layout
 
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-//                viewPager2.setCurrentItem(tab.getPosition());
-                Log.d("TAB",String.valueOf(tab.getPosition()));
+        // Check if recyclerView is properly found
 
-                if (tab.getPosition()==0){
-                    Attributes product = new Attributes();
-                    product.setTitle("Product 1");
-                    product.setDescription("Product Description");
+            // Proceed with other operations
+            getAll();
+            tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 
-                    System.out.println(product.getTitle());
+                @Override
+                public void onTabSelected(TabLayout.Tab tab) {
+                    String selectedCategory = "T-Shirt"; // Set the selected category based on tab position or any other identifier
 
-                }else if(tab.getPosition() == 1){
-                    TShirtFragment tShirtFragment = new TShirtFragment();
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.category_fragment_container, tShirtFragment)
-                            .addToBackStack(null)
-                            .commit();
-                    fragmentManager.popBackStack();
+                    // Switch case or if-else to determine the selected category based on tab position
+                    if (tab.getPosition() == 0) {
+                        selectedCategory = "T-Shirt";
+                        Log.d("Selected Category", "T-Shirt");
+                    } else if (tab.getPosition() == 1) {
+                        selectedCategory = "Jackets";
+                        Log.d("Selected Category", "Jackets");
+                    } // Add else-if statements for other tabs if needed
+
+                    // Filter products based on the selected category
+                    List<Products> filteredProducts = filterProductsByCategory(selectedCategory);
+
+                    // Log the filtered products to check if they match the expected category
+                    for (Products product : filteredProducts) {
+                        Log.d("Filtered Product", product.getAttribute().getCategoryResponse().getData().getCategoryAttributes().getName());
+                    }
+
+                    // Update RecyclerView with filtered products
+                    if (!filteredProducts.isEmpty()) {
+                        dataView(filteredProducts); // Update RecyclerView with filtered products
+                    } else {
+                        // Handle case where no products are found for the selected category
+                        Log.d("No Products", "No products found for the selected category");
+                    }
                 }
-            }
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
+                private List<Products> filterProductsByCategory(String category) {
 
-            }
+                    List<Products> filteredProducts = new ArrayList<>();
 
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+                    // Loop through productsList and filter based on category
+                    for (Products product : productsList) {
+                        System.out.println("working 1");
 
-            }
-        });
+                        // Assuming Attributes contains the category information
+                        String productCategory = product.getAttribute().getCategoryResponse().getData().getCategoryAttributes().getName(); // Replace getCategory() with your actual category getter
+
+                        // Example: If category corresponds to a specific category in your data model
+                        if (productCategory != null && productCategory.equals(category)) {
+
+                            System.out.println("working 2");
+                            filteredProducts.add(product);
+                        }
+                    }
+                    return filteredProducts;
+                }
+
+                @Override
+                public void onTabUnselected(TabLayout.Tab tab) {
+
+                }
+
+                @Override
+                public void onTabReselected(TabLayout.Tab tab) {
+
+                }
+            });
+
 //        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
 //            @Override
 //            public void onPageSelected(int position) {
@@ -155,8 +193,13 @@ public class HomeFragment extends Fragment {
     }
 
     private void dataView(List<Products> products){
-        ProductAdapter productAdapter = new ProductAdapter(context,products);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setAdapter(productAdapter);
+        if (recyclerView != null) {
+            ProductAdapter productAdapter = new ProductAdapter(context, products);
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            recyclerView.setAdapter(productAdapter);
+            getAll();
+        } else {
+            Log.e("HomeFragment", "RecyclerView is null. Check initialization.");
+        }
     }
 }
