@@ -2,18 +2,22 @@ package com.otaku.otaku.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.otaku.otaku.Fragments.SingleProductFragment;
 import com.otaku.otaku.MainActivity;
 import com.otaku.otaku.R;
 import com.otaku.otaku.api.ApiClient;
@@ -32,7 +36,7 @@ import retrofit2.Response;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
 
-    private static final String base_url = "http://192.168.1.100:1337";
+    private static final String base_url = "http://192.168.1.102:1337";
     Context context;
     ApiService apiService;
     List<Products> productsList;
@@ -63,20 +67,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
         Products product = productsList.get(position);
+
         stringTitle = product.getAttribute().getTitle();
         stringDes = product.getAttribute().getDescription();
         doublePrice = context.getString(R.string.rs) + String.valueOf(product.getAttribute().getPrice());
         String imgUrl = product.getAttribute().getImageResponse().getData().get(0).getImageAttributes().getUrl();
         String category = product.getAttribute().getCategoryResponse().getData().getCategoryAttributes().getName();
-
-
-        Log.i("Category", category);
-        Log.i("Product Title", stringTitle);
-        Log.i("Product Description", stringDes);
-        Log.i("Image URL",imgUrl);
-        Log.i("Price", String.valueOf(doublePrice));
-
 
         holder.title.setText(stringTitle);
         holder.price.setText(doublePrice);
@@ -85,6 +83,36 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                 .load(base_url+imgUrl)
                 .resize(700, 700)
                 .into(holder.imageView);
+
+
+        //SINGLE PRODUCT VIEW
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // When the product is clicked, navigate to SingleProductFragment
+                SingleProductFragment singleProductFragment = new SingleProductFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("productId", String.valueOf(product.getId()));
+
+                Log.d("Product ID", String.valueOf(product.getId()));
+                singleProductFragment.setArguments(bundle);
+
+                // Replace the current fragment with SingleProductFragment
+                FragmentActivity activity = (FragmentActivity) v.getContext();
+                if (activity != null) {
+                    activity.getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragmentContainer, singleProductFragment)
+                            .addToBackStack(null)  // Optional: Add to back stack
+                            .commit();
+                }
+            }
+        });
+
+        //TODO:Last product eka click karaddi withrai single product eka open wenne. eka hadanna
+
+
     }
 
     @Override
