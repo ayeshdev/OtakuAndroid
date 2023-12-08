@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.google.android.material.tabs.TabLayout;
 import com.otaku.otaku.Adapters.ProductAdapter;
@@ -26,6 +27,7 @@ import com.otaku.otaku.model.Products;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,12 +46,19 @@ public class CategoryFragment extends Fragment {
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setupRecyclerView();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_products, container, false);
         recyclerView = view.findViewById(R.id.recyclerViewProducts);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         recyclerView.setNestedScrollingEnabled(false);
         fetchData();
+
         return view;
     }
 
@@ -92,10 +101,23 @@ public class CategoryFragment extends Fragment {
         });
     }
 
+    // Implement the interface method to handle clicks
+
+
     private void setupRecyclerView() {
         if (productList != null) {
             productAdapter = new ProductAdapter(getContext(), productList);
             recyclerView.setAdapter(productAdapter);
         }
+    }
+
+    public void imageClick (){
+        Log.i("KOSKCOS","kocksocksco");
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 }

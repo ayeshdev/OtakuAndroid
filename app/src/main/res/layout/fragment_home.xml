@@ -279,7 +279,7 @@
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/categoryViewContainer"
                 android:name="com.otaku.otaku.Fragments.CategoryFragment"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="150dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -288,19 +288,15 @@
 
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/viewPager"
-                        android:layout_width="0dp"
-                        android:layout_height="500dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="160dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" >
 
                     </androidx.viewpager2.widget.ViewPager2>
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
         <!--        End Image Slider-->
 
     </FrameLayout>

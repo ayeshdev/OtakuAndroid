@@ -2,6 +2,7 @@ package com.otaku.otaku.api;
 
 import com.otaku.otaku.model.DataRequest;
 import com.otaku.otaku.model.DataResponse;
+import com.otaku.otaku.model.SizeResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -14,6 +15,9 @@ import retrofit2.http.Path;
 public interface ApiService {
     @GET("api/products?populate=*")
     Call<DataResponse> getProducts();
+
+    @GET("api/sizes")
+    Call<SizeResponse> getSizes();
 
     @POST("api/products")
     Call<DataRequest> createProduct(

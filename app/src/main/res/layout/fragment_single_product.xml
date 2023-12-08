@@ -10,17 +10,17 @@
 
         <ImageView
             android:id="@+id/product_image"
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/aot" />
 
         <TextView
-            android:id="@+id/product_name"
+            android:id="@+id/product_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="Attack on Titan - Wings of Freedom"
+            android:text="@string/product_title"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp"
-            android:text="1850.00 INR"
+            android:text="@string/product_view_price"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <TextView
@@ -69,27 +69,139 @@
             android:text="Size:"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-        <Spinner
-            android:id="@+id/size_spinner"
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            >
+
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/sizeSButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/s"
+                android:layout_margin="8dp"
+                android:backgroundTint="@drawable/button_highlight"
+                />
+
+            <Button
+                android:id="@+id/sizeMButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="M"
+                android:layout_margin="8dp"
+                android:backgroundTint="@drawable/button_highlight"
+                />
+
+            <Button
+                android:id="@+id/sizeLButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="L"
+                android:layout_margin="8dp"
+                android:backgroundTint="@drawable/button_highlight"
+                />
+
+            <Button
+                android:id="@+id/sizeXLButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="XL"
+                android:layout_margin="8dp"
+                android:backgroundTint="@drawable/button_highlight"
+                />
+
+            <Button
+                android:id="@+id/sizeXXLButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="XXL"
+                android:layout_margin="8dp"
+                android:backgroundTint="@drawable/button_highlight"
+                />
+
+            <Button
+                android:id="@+id/sizeXXXLButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="XXXL"
+                android:layout_margin="8dp"
+                android:backgroundTint="@drawable/button_highlight"
+                />
+
+            <!-- Add more buttons or change the text as needed -->
+
+        </LinearLayout>
+        </HorizontalScrollView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Decrease button -->
+            <Button
+                android:id="@+id/decreaseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:onClick="decreaseCount" />
+
+            <!-- Count display -->
+            <TextView
+                android:id="@+id/countTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="18sp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp" />
+
+            <!-- Increase button -->
+            <Button
+                android:id="@+id/increaseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:onClick="increaseCount" />
+
+
+            <Button
+                android:id="@+id/btn_add_to_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/add_to_cart_btn"
+                android:backgroundTint="@color/black"
+                android:drawableLeft="@drawable/baseline_add_shopping_cart_24"
+                android:paddingHorizontal="30dp"
+                android:paddingVertical="5dp"
+                android:text="@string/add_to_cart"
+                android:layout_marginStart="45dp"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/description_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="Description:"
+            android:text="@string/product_description"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <TextView
-            android:id="@+id/description_text"
+            android:id="@+id/product_description_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="This t-shirt features the Wings of Freedom from the popular anime Attack on Titan. Made from 100% cotton, it is soft and comfortable to wear. Perfect for fans of the show!"
+            android:text="@string/product_description_text"
             android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
         <TextView
@@ -110,7 +222,8 @@
             android:text="Similar products:"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-        <!-- Add similar products here -->
+
 
     </LinearLayout>
+
 </ScrollView>

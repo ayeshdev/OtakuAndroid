@@ -1,30 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Modify this layout to represent a single product item -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><!-- Modify this layout to represent a single product item -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:clickable="true"
     android:orientation="vertical"
     android:padding="8dp">
 
-    <FrameLayout
-        android:id="@+id/product_frame_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <ImageView
             android:id="@+id/productView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/aot" />
+            android:clickable="true"
+            android:onClick="imageClick"
+            android:src="@drawable/aot"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="250dp"
-            android:paddingHorizontal="20dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp">
 
             <TextView
                 android:id="@+id/textViewProductPrice"
@@ -32,6 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="4dp"
+                android:clickable="true"
                 android:text="@string/product_price"
                 android:textAlignment="center"
                 android:textSize="16sp"
@@ -44,25 +42,46 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="50dp"
                 android:layout_marginBottom="20dp"
-                android:src="@drawable/baseline_favorite_border_24"
-                android:contentDescription="@string/favorites_icon" />
+                android:clickable="true"
+                android:contentDescription="@string/favorites_icon"
+                android:src="@drawable/baseline_favorite_border_24" />
 
         </LinearLayout>
 
 
         <TextView
-        android:id="@+id/textViewProductName"
+            android:id="@+id/textViewProductName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="4dp"
+            android:text="@string/product_name"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/product_name"
-        android:textSize="16sp"
-        android:textStyle="bold"
-            android:textAlignment="center"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="280dp"
-        android:layout_marginBottom="4dp"/>
-    </FrameLayout>
+        android:id="@+id/pid"
+        android:visibility="gone"
+        />
 
-    <!-- Add more views for product details like price, image, etc. -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/img_url"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/description_text"
+        android:visibility="gone"
+        />
+
+
 
 </LinearLayout>

@@ -167,8 +167,20 @@ public class HomeFragment extends Fragment {
 //                tabLayout.getTabAt(position).select();
 //            }
 //        });
-    }
 
+
+        if (view.findViewById(R.id.imageView) == null){
+            Log.i("Image View Status","Image View is Null");
+        }else{
+            view.findViewById(R.id.imageView).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    System.out.println("HEEEEEEEEEE");
+                }
+            });
+        }
+
+    }
 
 
     public void getAll(){
@@ -202,4 +214,5 @@ public class HomeFragment extends Fragment {
             Log.e("HomeFragment", "RecyclerView is null. Check initialization.");
         }
     }
+
 }

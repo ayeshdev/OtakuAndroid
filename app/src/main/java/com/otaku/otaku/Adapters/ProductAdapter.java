@@ -15,6 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.otaku.otaku.Fragments.SingleProductFragment;
@@ -34,18 +36,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder>{
 
-    private static final String base_url = "http://192.168.1.102:1337";
+    private static final String base_url = "http://192.168.1.101:1337";
     Context context;
     ApiService apiService;
     List<Products> productsList;
+    String stringId;
     String stringTitle;
-    String stringDes;
+    String stringDescription;
     String doublePrice;
-
     ImageResponse image;
-
+    String img_url;
 
     public ProductAdapter() {
     }
@@ -54,6 +56,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         this.productsList = productsList;
         this.context = context;
     }
+
 
     @NonNull
     @Override
@@ -70,48 +73,55 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
         Products product = productsList.get(position);
 
+        stringId = String.valueOf(product.getId());
         stringTitle = product.getAttribute().getTitle();
-        stringDes = product.getAttribute().getDescription();
+        stringDescription = product.getAttribute().getDescription();
         doublePrice = context.getString(R.string.rs) + String.valueOf(product.getAttribute().getPrice());
         String imgUrl = product.getAttribute().getImageResponse().getData().get(0).getImageAttributes().getUrl();
         String category = product.getAttribute().getCategoryResponse().getData().getCategoryAttributes().getName();
 
+        holder.id.setText(stringId);
         holder.title.setText(stringTitle);
         holder.price.setText(doublePrice);
-//        holder.description.setText(product.getAttribute().getDescription());
+        holder.img_url.setText(imgUrl);
+        holder.description.setText(stringDescription);
+
         Picasso.get()
                 .load(base_url+imgUrl)
-                .resize(700, 700)
+                .resize(200, 200)
                 .into(holder.imageView);
 
 
         //SINGLE PRODUCT VIEW
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                // When the product is clicked, navigate to SingleProductFragment
-                SingleProductFragment singleProductFragment = new SingleProductFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString("productId", String.valueOf(product.getId()));
+                bundle.putString("title", String.valueOf(holder.title.getText()));
+                bundle.putString("price", String.valueOf(holder.price.getText()));
+                bundle.putString("id", String.valueOf(holder.id.getText()));
+                bundle.putString("img_url", String.valueOf(holder.img_url.getText()));
+                bundle.putString("description", String.valueOf(holder.description.getText()));
 
-                Log.d("Product ID", String.valueOf(product.getId()));
+                Log.i("Title",String.valueOf(holder.title.getText()));
+                Log.i("Price",String.valueOf(holder.price.getText()));
+                Log.i("ID", String.valueOf(holder.id.getText()));
+                Log.i("IMG_URL", String.valueOf(holder.img_url.getText()));
+                Log.i("DESCRIPTION", String.valueOf(holder.description.getText()));
+
+                SingleProductFragment singleProductFragment = new SingleProductFragment();
                 singleProductFragment.setArguments(bundle);
 
-                // Replace the current fragment with SingleProductFragment
-                FragmentActivity activity = (FragmentActivity) v.getContext();
-                if (activity != null) {
-                    activity.getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragmentContainer, singleProductFragment)
-                            .addToBackStack(null)  // Optional: Add to back stack
-                            .commit();
-                }
+                FragmentManager fragmentManager = ((FragmentActivity)context).getSupportFragmentManager();
+
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+                transaction.replace(R.id.fragmentContainer,singleProductFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
+
         });
-
-        //TODO:Last product eka click karaddi withrai single product eka open wenne. eka hadanna
-
 
     }
 
@@ -120,9 +130,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         return productsList != null ? productsList.size() : 0;
     }
 
-    public static class MyViewHolder extends
-            RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+
+        TextView id;
         TextView title;
+        TextView img_url;
         TextView description;
         TextView price;
         CardView card;
@@ -131,13 +143,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            id = itemView.findViewById(R.id.pid);
             title = itemView.findViewById(R.id.textViewProductName);
-//            description = itemView.findViewById(R.id.description);
+            img_url = itemView.findViewById(R.id.img_url);
+            description = itemView.findViewById(R.id.description_text);
             price = itemView.findViewById(R.id.textViewProductPrice);
             imageView = itemView.findViewById(R.id.productView); // Initialize the ImageView
 //            card = itemView.findViewById(R.id.card);
         }
     }
-
-
 }

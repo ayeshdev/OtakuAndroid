@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView.setNavigationItemSelectedListener(this);
         bottomNavigationView.setOnItemSelectedListener(this);
+
+        loadFragmentView(new HomeFragment());
     }
 
 
@@ -97,8 +99,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else if (item.getItemId() == R.id.navAccount){
             loadFragmentView(new ProfileFragment());
             return true;
-        }else;
-        return false;
+        }else{
+            loadFragmentView(new HomeFragment());
+            return true;
+        }
     }
 
     public void loadFragmentView(Fragment fragment){
