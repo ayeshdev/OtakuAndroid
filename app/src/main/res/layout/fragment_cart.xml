@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/back"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="You have 3 Products in your Cart"
-        android:textSize="24sp"
-        android:textColor="#000000"
         android:gravity="center"
-        android:padding="16dp"/>
+        android:padding="16dp"
+        android:text="You have 3 Products in your Cart"
+        android:textColor="#000000"
+        android:textSize="24sp" />
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -24,163 +26,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerCartViewProducts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/aot"/>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="White T-Shirt"
-                        android:textSize="18sp"
-                        android:textColor="#000000"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Rs 1950.00"
-                        android:textSize="16sp"
-                        android:textColor="#000000"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Size: XS"
-                        android:textSize="14sp"
-                        android:textColor="#000000"/>
-
-                </LinearLayout>
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/close_btn"
-                    android:background="#FFFFFF"
-                    android:onClick="removeItem"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/aot"/>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Black T-Shirt"
-                        android:textSize="18sp"
-                        android:textColor="#000000"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Rs 1950.00"
-                        android:textSize="16sp"
-                        android:textColor="#000000"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Size: S"
-                        android:textSize="14sp"
-                        android:textColor="#000000"/>
-
-                </LinearLayout>
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/close_btn"
-                    android:background="#FFFFFF"
-                    android:onClick="removeItem"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/aot"/>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Red One-Piece Swimsuit"
-                        android:textSize="18sp"
-                        android:textColor="#000000"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Rs 1950.00"
-                        android:textSize="16sp"
-                        android:textColor="#000000"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Size: M"
-                        android:textSize="14sp"
-                        android:textColor="#000000"/>
-
-                </LinearLayout>
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/close_btn"
-                    android:background="#FFFFFF"
-                    android:onClick="removeItem"/>
-
-            </LinearLayout>
+                android:nestedScrollingEnabled="false" />
 
         </LinearLayout>
 
-    </ScrollView>
+    </RelativeLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="bottom"
         android:orientation="vertical"
         android:padding="8dp">
 
@@ -188,31 +48,39 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Total Price: Rs 5850.00"
-            android:textSize="16sp"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Discount: Rs 0.00"
-            android:textSize="16sp"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Estimated Delivery Fees: Rs 150.00"
-            android:textSize="16sp"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#000000"
+        android:drawableStart="@drawable/cart_icon"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="15dp"
         android:text="Checkout"
+        android:textColor="@color/white"
         android:textSize="18sp"
-        android:textColor="#FFFFFF"
-        android:background="#000000"/>
+        app:cornerRadius="10dp"
+        app:iconGravity="end"
+        app:iconTint="#FFFFFF"
+        android:layout_marginHorizontal="20dp"
+        />
 
 </LinearLayout>

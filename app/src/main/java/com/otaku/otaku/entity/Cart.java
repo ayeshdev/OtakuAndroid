@@ -5,6 +5,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.otaku.otaku.model.Sizes;
+
+import java.util.List;
+
 @Entity
 public class Cart {
     @PrimaryKey(autoGenerate = true)
