@@ -30,8 +30,9 @@
                 android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="240dp"
-                android:src="@drawable/aot"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
+                android:src="@drawable/tshirt"
+                android:cropToPadding="true"
                 />
 
             <TextView
@@ -58,8 +59,8 @@
                 android:id="@+id/imageView3"
                 android:layout_width="wrap_content"
                 android:layout_height="240dp"
-                android:src="@drawable/aot"
-                android:scaleType="fitXY"/>
+                android:src="@drawable/jacket"
+                android:scaleType="centerCrop"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -85,8 +86,8 @@
                 android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
                 android:layout_height="240dp"
-                android:src="@drawable/aot"
-                android:scaleType="fitXY"/>
+                android:src="@drawable/longsleeve"
+                android:scaleType="centerCrop"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -139,8 +140,9 @@
                 android:id="@+id/imageView6"
                 android:layout_width="wrap_content"
                 android:layout_height="240dp"
-                android:src="@drawable/aot"
-                android:scaleType="fitXY"/>
+                android:src="@drawable/shorts"
+                android:scaleType="centerCrop"
+                />
 
             <TextView
                 android:layout_width="match_parent"
@@ -166,8 +168,8 @@
                 android:id="@+id/imageView7"
                 android:layout_width="wrap_content"
                 android:layout_height="240dp"
-                android:src="@drawable/aot"
-                android:scaleType="fitXY"/>
+                android:src="@drawable/collections"
+                android:scaleType="centerCrop"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -193,8 +195,8 @@
                 android:id="@+id/imageView8"
                 android:layout_width="wrap_content"
                 android:layout_height="240dp"
-                android:src="@drawable/aot"
-                android:scaleType="fitXY"/>
+                android:src="@drawable/newproducts"
+                android:scaleType="centerCrop"/>
 
             <TextView
                 android:layout_width="match_parent"

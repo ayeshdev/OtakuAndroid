@@ -51,6 +51,7 @@ public class SingleProductFragment extends Fragment {
     private String product_img_url;
     private String product_price;
     private String product_description;
+    private String selectedColor;
 
     private int count = 0;
 
@@ -268,7 +269,7 @@ public class SingleProductFragment extends Fragment {
 
                 RadioGroup radioGroup = view.findViewById(R.id.color_group);
                 int selectedRadioButtonId = radioGroup.getCheckedRadioButtonId();
-                String selectedText;
+
 
                 Log.i(TAG, "onClick: "+sizeList);
                 Log.i(TAG, "onClick: "+count);
@@ -277,8 +278,8 @@ public class SingleProductFragment extends Fragment {
 
                 if (selectedRadioButtonId != -1){
                     RadioButton selectedRadioButton = view.findViewById(selectedRadioButtonId);
-                    selectedText = selectedRadioButton.getText().toString();
-                    Log.i(TAG, "onClick: " + selectedText);
+                    selectedColor = selectedRadioButton.getText().toString();
+                    Log.i(TAG, "onClick: " + selectedColor);
                 }else {
                     Log.i(TAG, "onClick: SELECT COLOR");
                 }
@@ -289,8 +290,10 @@ public class SingleProductFragment extends Fragment {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        AppDatabase db = Room.databaseBuilder(requireContext().getApplicationContext(),
-                                AppDatabase.class, "otaku").build();
+                        AppDatabase db = Room.databaseBuilder(requireContext()
+                                .getApplicationContext(), AppDatabase.class, "otaku")
+                                .fallbackToDestructiveMigration()
+                                .build();
 
                         CartDao cartDao = db.cartDao();
 
@@ -302,6 +305,10 @@ public class SingleProductFragment extends Fragment {
                         String clean_product_price = product_price.replaceAll("[^\\d.]", "");
                         cart.setPrice(Double.valueOf(clean_product_price));
 
+                        cart.setSizes(sizeList);
+                        cart.setQty(count);
+                        cart.setColor(selectedColor);
+                        cart.setImg_url(product_img_url);
 
                         cartDao.insert(cart);
 

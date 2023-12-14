@@ -14,15 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.otaku.otaku.R;
 import com.otaku.otaku.entity.Cart;
-import com.otaku.otaku.model.Sizes;
+import com.otaku.otaku.entity.Favorites;
 import com.squareup.picasso.Picasso;
-
-import org.checkerframework.checker.units.qual.C;
 
 import java.util.List;
 
-public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder>{
-    private static String TAG = CartAdapter.class.getName();
+public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.FavoritesViewHolder> {
+    private static String TAG = FavoriteAdapter.class.getName();
 
     private static final String base_url = "http://192.168.13.210:1337";
 
@@ -33,57 +31,43 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     Integer qty;
     Double price;
     String color;
-    List<Cart> cartList;
+    List<Favorites> favoritesList;
     List<String> sizeList;
     private String img_url;
 
-    public CartAdapter() {
+    public FavoriteAdapter() {
     }
 
-    public CartAdapter(Context context, List<Cart> cartList) {
+    public FavoriteAdapter(Context context, List<Favorites> favoritesList) {
         this.context = context;
-        this.cartList = cartList;
+        this.favoritesList = favoritesList;
     }
 
     @NonNull
     @Override
-    public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FavoriteAdapter.FavoritesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view;
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         view = layoutInflater.inflate(R.layout.cart_product,parent,false);
-        return new CartViewHolder(view);
+        return new FavoritesViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-        Cart cart = cartList.get(position);
+    public void onBindViewHolder(@NonNull FavoriteAdapter.FavoritesViewHolder holder, int position) {
+        Favorites favorites = favoritesList.get(position);
 
-        Log.i(TAG, "onBindViewHolder: "+cart);
+        Log.i(TAG, "onBindViewHolder: "+favorites);
 
-        id = String.valueOf(cart.getId());
-        title = cart.getTitle();
-        price = cart.getPrice();
-        color = cart.getColor();
-        sizeList = cart.getSizes();
-        qty = cart.getQty();
-        img_url = cart.getImg_url();
+        id = String.valueOf(favorites.getId());
+        title = favorites.getTitle();
+        price = favorites.getPrice();
+        color = favorites.getColor();
+        img_url = favorites.getImg_url();
 
         holder.title.setText(title);
         holder.price.setText(String.valueOf(price));
         holder.color.setText(color);
-
-        // Convert List<String> to a formatted string before setting it to the TextView
-        if (sizeList != null && !sizeList.isEmpty()) {
-            StringBuilder sizesText = new StringBuilder();
-            for (String size : sizeList) {
-                sizesText.append(size).append(", "); // Assuming you want to separate sizes by a comma
-            }
-            sizesText.deleteCharAt(sizesText.length() - 2); // Remove the last comma and space
-            holder.size.setText(sizesText.toString());
-        }
-
-        holder.qty.setText(String.valueOf(qty));
 
         Picasso.get()
                 .load(base_url+img_url)
@@ -92,10 +76,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     @Override
     public int getItemCount() {
-        return cartList != null ? cartList.size() : 0;
+        return favoritesList != null ? favoritesList.size() : 0;
     }
 
-    public static class CartViewHolder extends RecyclerView.ViewHolder {
+    public static class FavoritesViewHolder extends RecyclerView.ViewHolder {
 
         TextView id;
         TextView title;
@@ -109,7 +93,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
         ImageView imageView;
 
-        public CartViewHolder(@NonNull View itemView) {
+        public FavoritesViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.cart_product_title);
             price = itemView.findViewById(R.id.cart_product_price);
@@ -120,7 +104,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
         }
     }
-
 
 
 }

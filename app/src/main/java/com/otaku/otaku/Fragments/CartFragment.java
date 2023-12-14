@@ -61,8 +61,10 @@ public class CartFragment extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                AppDatabase db = Room.databaseBuilder(requireContext().getApplicationContext(),
-                        AppDatabase.class, "otaku").build();
+                AppDatabase db = Room.databaseBuilder(requireContext()
+                        .getApplicationContext(), AppDatabase.class, "otaku")
+                        .fallbackToDestructiveMigration()
+                        .build();
 
                 CartDao cartDao = db.cartDao();
 

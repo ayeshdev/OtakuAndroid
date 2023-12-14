@@ -29,6 +29,7 @@ import com.otaku.otaku.api.ApiService;
 import com.otaku.otaku.model.Attributes;
 import com.otaku.otaku.model.DataResponse;
 import com.otaku.otaku.model.Products;
+import com.otaku.otaku.util.ConfigReader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
+
+    private static String TAG = HomeFragment.class.getName();
 
     Context context;
 
@@ -57,9 +60,14 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -73,6 +81,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         getAll();
 
         imageSlider = view.findViewById(R.id.imageSlider);
@@ -205,6 +214,9 @@ public class HomeFragment extends Fragment {
     }
 
     private void dataView(List<Products> products){
+
+
+
         if (recyclerView != null) {
             ProductAdapter productAdapter = new ProductAdapter(context, products);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));

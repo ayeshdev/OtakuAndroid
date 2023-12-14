@@ -38,7 +38,7 @@ import retrofit2.Response;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder>{
 
-    private static final String base_url = "http://192.168.1.102:1337";
+    private static final String base_url = "http://192.168.13.210:1337";
     Context context;
     ApiService apiService;
     List<Products> productsList;
